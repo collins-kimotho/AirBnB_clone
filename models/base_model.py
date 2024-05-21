@@ -1,3 +1,13 @@
+#!/usr/bin/python3
+"""
+Base class for all other classes in the AirBnB clone project.
+
+Attributes:
+    id (str): Unique identifier for the instance.
+    created_at (datetime): Creation timestamp.
+    updated_at (datetime): Last update timestamp.
+"""
+
 import uuid
 from datetime import datetime
 
@@ -10,10 +20,14 @@ class BaseModel:
             *args: Unused.
             **kwargs: Dictionary containing attribute names and values.
 
-        Attributes:
-            id (str): Unique identifier for the instance.
-            created_at (datetime): Creation timestamp.
-            updated_at (datetime): Last update timestamp.
+        Notes:
+            If kwargs is not empty:
+                - Each key of this dictionary is an attribute name.
+                - Each value of this dictionary is the value of the corresponding attribute.
+                - Warning: created_at and updated_at are strings in this dictionary,
+                  but inside the BaseModel instance, they are datetime objects.
+            Otherwise:
+                - Create id and created_at as new instance attributes.
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -54,4 +68,11 @@ class BaseModel:
         Returns:
             str: String in the format '[<class name>] (<self.id>) <self.__dict__>'.
         """
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+# Example usage:
+if __name__ == "__main__":
+    base_model = BaseModel()
+    print(base_model)
+    base_model.save()
+    print(base_model.to_dict())
