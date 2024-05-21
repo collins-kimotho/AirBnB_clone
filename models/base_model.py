@@ -1,7 +1,7 @@
-# models/base_model.py
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+
 
 class BaseModel:
     """Base class for all AirBnB clone models."""
@@ -12,14 +12,14 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-            if 'created_at' in kwargs and isinstance(kwargs['created_at'], str):
-                self.created_at = datetime.fromisoformat(
-                    kwargs['created_at']
-                )
-            if 'updated_at' in kwargs and isinstance(kwargs['updated_at'], str):
-                self.updated_at = datetime.fromisoformat(
-                    kwargs['updated_at']
-                )
+            if 'created_at' in kwargs and isinstance(kwargs
+                                                     ['created_at'], str):
+                self.created_at = datetime.fromisoformat(kwargs['created_at'])
+            if 'updated_at' in kwargs and isinstance(kwargs
+                                                     ['updated_at'], str):
+                self.updated_at = datetime.fromisoformat(kwargs['updated_at'])
+            if 'id' not in kwargs:
+                self.id = str(uuid.uuid4())
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -41,5 +41,5 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation of the instance."""
-        return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
-
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
