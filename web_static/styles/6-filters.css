@@ -69,20 +69,20 @@
 
 }
 
-.filters .locations .popover {
-    padding: 20px;
+.filters .popover {
+    padding: 20px
 }
 
-.filters .locations .popover li {
+.filters .popover li {
     margin-bottom: 10px;
 }
 
-.filters .locations .popover h2 {
+.filters .popover h2 {
     font-size: 16px;
     margin: 0;
 }
 
-.filters .locations .popover ul {
+.filters .popover ul {
     list-style: none;
     margin: 0;
 }
